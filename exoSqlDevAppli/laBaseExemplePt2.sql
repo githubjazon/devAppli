@@ -105,6 +105,60 @@
     ON employe.nom = dept.noregion 
     GROUP BY dept.noregion;
 
+--Afficher les numéros des départements ayant au moins 3 employés
+
+    SELECT nodep AS "numéros des départements ayant au moins 3 employés"
+    FROM employe
+    GROUP BY nodep
+    HAVING COUNT(*) >= 3;
+
+--Afficher les lettres qui sont l'initiale d'au moins trois employés.
+
+    SELECT DISTINCT SUBSTRING(nom, 1, 1) AS initiale
+    FROM employe
+    GROUP BY initiale
+    HAVING COUNT(*) >= 3
+    ORDER BY initiale;
+
+--Rechercher le salaire maximum et le salaire minimum parmi tous les salariés et l'écart entre les deux
+
+    SELECT MAX(salaire) AS "Salaire Max", 
+       MIN(salaire) AS "Salaire Min", 
+       ABS(MAX(salaire) - MIN(salaire)) AS "Différence"
+    FROM employe;
+
+--Rechercher le nombre de titres différents
+
+    SELECT COUNT(DISTINCT titre) AS "Nombre de titres différents"
+    FROM employe;
+
+--Pour chaque titre, compter le nombre d'employés possédant ce titre
+
+    SELECT titre, COUNT(*) as "nombre d'employés"
+    FROM employe
+    GROUP BY titre;
+
+--Pour chaque nom de département, afficher le nom du département et le nombre d'employés
+
+    SELECT d.nom as "Nom du département", COUNT(e.noemp) as "Nombre d'employés"
+    FROM dept d LEFT JOIN employe e ON d.nodept = e.nodep
+    GROUP BY d.nom;
+
+--Rechercher les titres et la moyenne des salaires par titre dont la moyenne est supérieure à la moyenne des salaires des "Représentants"
+
+    SELECT titre, ROUND (AVG (salaire))  AS "Moyenne des salaires"
+    FROM employe
+    GROUP BY titre
+    HAVING AVG(salaire) > (SELECT AVG(salaire) FROM employe WHERE titre = 'representant')
+    ORDER BY AVG(salaire) DESC;
+
+--Rechercher le nombre de salaires renseignés et le nombre de taux de commission renseignés
+
+    SELECT COUNT(salaire) AS "Nombre de salaires renseignés", COUNT(tauxcom) AS "Nombre de taux de commissions renseignées"
+    FROM employe
+
+
+
 
 
 
