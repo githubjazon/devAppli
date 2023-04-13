@@ -1,6 +1,9 @@
 -- Rechercher le prénom des employés et le numéro de la région de leur département
 
-    SELECT employe.prenom, dept.noregion FROM employe INNER JOIN dept ON employe.nodep = dept.nodept;
+    SELECT employe.prenom, dept.noregion 
+    FROM employe 
+    INNER JOIN dept 
+    ON employe.nodep = dept.nodept;
 
 -- Rechercher le numéro du département, le nom du département, le nom des employés classés par numéro de département (renommer les tables utilisées)
 
@@ -45,11 +48,10 @@
 
     SELECT e.nom, e.salaire, e.nodep
     FROM employe e
-    WHERE e.salaire > ALL (
-    SELECT e2.salaire
-    FROM employe e2
-    WHERE e2.nodep = 31
-    )
+    WHERE e.salaire > ALL 
+        ( SELECT e2.salaire
+          FROM employe e2
+          WHERE e2.nodep = 31)
     ORDER BY e.nodep, e.salaire;
 
 --Rechercher le nom et le titre des employés du service 31 qui ont un titre que l'on trouve dans le département 32
