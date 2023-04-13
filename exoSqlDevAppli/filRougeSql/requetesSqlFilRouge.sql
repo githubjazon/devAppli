@@ -14,7 +14,8 @@
       AS"Prix" 
       FROM commande c
       JOIN plat p
-      ON c.id_plat = p.id_categorie;  
+      ON c.id_plat = p.id_categorie
+      ORDER BY c.date_commande;
 
 
 
