@@ -4,7 +4,21 @@
 
     --Afficher la liste des commandes ( la liste doit faire apparaitre la date, les informations du client, le plat et le prix )
 
-        
+      SELECT c.date_commande 
+      AS "Date", c.nom_client 
+      AS "Nom du client", c.telephone_client 
+      AS "Téléphone du client", c.email_client 
+      AS "Mail du client", c.adresse_client 
+      AS "Adresse du client", p.libelle 
+      AS"Plat", p.prix 
+      AS"Prix" 
+      FROM commande c
+      JOIN plat p
+      ON c.id_plat = p.id_categorie;  
+
+
+
+
 
     Afficher la liste des plats en spécifiant la catégorie
 
