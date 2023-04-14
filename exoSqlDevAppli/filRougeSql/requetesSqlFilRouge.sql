@@ -21,9 +21,17 @@
 
 
 
-    Afficher la liste des plats en spécifiant la catégorie
+    -- Afficher la liste des plats en spécifiant la catégorie
 
-    Afficher les catégories et le nombre de plats actifs dans chaque catégorie
+      SELECT p.libelle AS "Plat", c.libelle AS "Catégorie" FROM plat p
+      JOIN categorie c
+      ON p.id_categorie = c.id
+      ORDER BY p.id_categorie ASC;
+
+
+    -- Afficher les catégories et le nombre de plats actifs dans chaque catégorie
+
+      
 
     Liste des plats les plus vendus par ordre décroissant
 
